@@ -740,13 +740,13 @@ static int cpufreq_interactive_speedchange_task(void *data)
 				continue;
 			}
 
-			if (unlikely(!display_on)) {
+			if (unlikely(state_suspended)) {
 			    if (ppol->target_freq > tunables->screen_off_max)
 				ppol->target_freq = tunables->screen_off_max;
 			}
 
 			if (ppol->target_freq != ppol->policy->cur) {
-			    if (tunables->powersave_bias || !display_on)
+			    if (tunables->powersave_bias || state_suspended)
 				    __cpufreq_driver_target(ppol->policy,
 							    ppol->target_freq,
 							    CPUFREQ_RELATION_C);
