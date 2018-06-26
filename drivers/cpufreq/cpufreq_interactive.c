@@ -708,7 +708,6 @@ static int cpufreq_interactive_speedchange_task(void *data)
 	unsigned long flags;
 	struct cpufreq_interactive_policyinfo *ppol;
 	struct cpufreq_interactive_tunables *tunables;
-	bool display_on = !state_suspended;
 
 	while (1) {
 		set_current_state(TASK_INTERRUPTIBLE);
