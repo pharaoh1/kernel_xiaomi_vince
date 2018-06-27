@@ -32,13 +32,16 @@ struct cpu_sync {
 static DEFINE_PER_CPU(struct cpu_sync, sync_info);
 static struct workqueue_struct *cpu_boost_wq;
 
-static struct work_struct input_boost_work;
-
-static unsigned int input_boost_enabled = 1;
-module_param(input_boost_enabled, uint, 0644);
-
 static unsigned int input_boost_ms = 40;
 module_param(input_boost_ms, uint, 0644);
+
+static struct work_struct input_boost_work;
+static bool input_boost_enabled;
+
+static bool sched_boost_on_input;
+module_param(sched_boost_on_input, bool, 0644);
+
+static bool sched_boost_active;
 
 #ifdef CONFIG_DYNAMIC_STUNE_BOOST
 static int dynamic_stune_boost;
@@ -182,12 +185,6 @@ static void do_input_boost_rem(struct work_struct *work)
 	/* Update policies for all online CPUs */
 	update_policy_online();
 
-	if (sched_boost_active) {
-		ret = sched_set_boost(0);
-		if (ret)
-			pr_err("cpu-boost: HMP boost disable failed\n");
-		sched_boost_active = false;
-	}
 }
 
 static void do_input_boost(struct work_struct *work)

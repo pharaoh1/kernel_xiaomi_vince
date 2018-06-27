@@ -25,20 +25,20 @@ White='\e[0;37m'        # White
 
 
 echo -e "$White***********************************************"
-echo "         Compiling REVOLT Kernel             "
+echo "         Compiling Zucc Kernel                          "
 echo -e "***********************************************$nocol"
 
 LC_ALL=C date +%Y-%m-%d
 kernel_dir=$PWD
 build=$kernel_dir/out
-export CROSS_COMPILE=~/Android/kernel/tc/uu/aarch64-linux-android-7.x/bin/aarch64-linux-android-
-kernel="REVOLT-EAS"
-version="R2"
+export CROSS_COMPILE=/media/oveno/649AC4299AC3F6181/xtended/kernel/xiaomi/vince/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+kernel="Zucc-EAS"
+version="v1.0"
 vendor="xiaomi"
-device="mido"
+device="vince"
 zip=zip
 date=`date +"%Y%m%d-%H%M"`
-config=mido_defconfig
+config=vince_defconfig
 kerneltype="Image.gz-dtb"
 jobcount="-j$(grep -c ^processor /proc/cpuinfo)"
 #modules_dir=$kernel_dir/"$zip"/system/lib/modules
@@ -50,8 +50,8 @@ BASE_AK_VER="REVOLT-EAS"
 VER="R2"
 AK_VER="$BASE_AK_VER$VER"
 
-export KBUILD_BUILD_USER=NATO66613
-export KBUILD_BUILD_HOST=WAR-ROM
+export KBUILD_BUILD_USER=Oveno
+export KBUILD_BUILD_HOST=kekboi
 
 export LOCALVERSION=~`echo $AK_VER`
 echo "Checking for build..."

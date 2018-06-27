@@ -38,12 +38,6 @@
 struct mdss_dsi_ctrl_pdata *change_par_ctrl ;
 int change_par_buf;
 int LCM_effect[3] = {0x2, 0xf0, 0xf00};
-bool display_on = true;
-
-bool is_display_on()
-{
-	return display_on;
-}
 
 DEFINE_LED_TRIGGER(bl_led_trigger);
 
